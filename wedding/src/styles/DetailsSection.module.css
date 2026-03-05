@@ -1,0 +1,130 @@
+.section {
+  position: relative;
+  padding: 80px 24px;
+  background-color: var(--cream);
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=1920&q=80');
+  background-size: cover;
+  background-position: center 40%;
+  opacity: 0.07;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--cream) 0%, transparent 25%, transparent 75%, var(--cream) 100%);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 400;
+  color: var(--text);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--gold-light);
+  border-radius: 4px;
+  padding: 40px 24px;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* hover только на десктопе */
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(200, 169, 110, 0.15);
+    transform: translateY(-4px);
+  }
+}
+
+.cardIcon {
+  font-size: 26px;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.cardLabel {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.cardSubtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 16px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 28px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .cardIcon {
+    font-size: 28px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+}

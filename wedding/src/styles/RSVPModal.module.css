@@ -1,0 +1,202 @@
+.modal :global(.ant-modal-content) {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.modal :global(.ant-modal-close) {
+  color: var(--text-light);
+  top: 16px;
+  right: 16px;
+}
+
+.modal :global(.ant-modal-close:hover) {
+  color: var(--text);
+  background: transparent;
+}
+
+.modalInner {
+  background-color: var(--cream);
+}
+
+.modalHeader {
+  padding: 36px 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--gold-light);
+  background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+}
+
+.modalEyebrow {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.modalTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.modalSubtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+.modalBody {
+  padding: 28px 32px 36px;
+}
+
+.fieldLabel {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-light) !important;
+  font-weight: 400;
+}
+
+.inputIcon {
+  color: var(--gold) !important;
+  font-size: 14px;
+}
+
+.input {
+  border-radius: 2px !important;
+  font-family: 'Lato', sans-serif !important;
+  /* 16px — iOS Safari не зумит поля ввода при font-size >= 16px */
+  font-size: 16px !important;
+}
+
+.formActions {
+  margin-top: 8px;
+}
+
+.submitBtn {
+  height: 52px !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 13px !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  background-color: var(--gold) !important;
+  border-color: var(--gold) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 4px 20px rgba(200, 169, 110, 0.3) !important;
+}
+
+@media (hover: hover) {
+  .submitBtn:hover {
+    background-color: var(--gold-dark) !important;
+    border-color: var(--gold-dark) !important;
+  }
+}
+
+.cancelBtn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  padding: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .cancelBtn:hover {
+    color: var(--text);
+  }
+}
+
+/* Success view */
+.successView {
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 48px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  animation: heartBeat 1.2s ease both;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.successTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.successText {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 18px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.successDate {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+
+.closeBtn {
+  height: 48px !important;
+  padding: 0 36px !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 12px !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  border-color: var(--gold-light) !important;
+  color: var(--text-light) !important;
+  border-radius: 2px !important;
+  background: transparent !important;
+}
+
+@media (hover: hover) {
+  .closeBtn:hover {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+  }
+}
+
+/* Мобильный — уменьшаем отступы */
+@media (max-width: 480px) {
+  .modalHeader {
+    padding: 28px 20px 20px;
+  }
+
+  .modalBody {
+    padding: 24px 20px 28px;
+  }
+
+  .successView {
+    padding: 40px 20px;
+  }
+}

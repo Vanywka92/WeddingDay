@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream: #faf7f2;
+  --ivory: #f4ede3;
+  --gold: #c8a96e;
+  --gold-dark: #a8893e;
+  --gold-light: #ecdfc8;
+  --text: #3d3530;
+  --text-light: #7a6a5a;
+  --white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+.reveal-delay-4 { transition-delay: 0.5s; }
+.reveal-delay-5 { transition-delay: 0.65s; }
+
+/* Decorative divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin: 24px 0;
+  color: var(--gold);
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.ornament::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Section base styles */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Убираем мигание при тапе на мобильных */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Минимальная высота области касания */
+button, a {
+  min-height: 44px;
+}
+
+/* Плавный скролл (iOS поддерживает с iOS 13) */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Ant Design theme overrides */
+.ant-btn-primary {
+  background-color: var(--gold) !important;
+  border-color: var(--gold) !important;
+}
+.ant-btn-primary:hover {
+  background-color: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
+}

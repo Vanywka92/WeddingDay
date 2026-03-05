@@ -1,0 +1,157 @@
+.hero {
+  position: relative;
+  width: 100%;
+  /* iOS Safari не уважает 100vh с адресной строкой — используем svh с fallback */
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: -20%;
+  background-image: url('../img/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* На мобильных параллакс отключён — убираем лишний inset */
+@media (hover: none) and (pointer: coarse) {
+  .bg {
+    inset: 0;
+    will-change: auto;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(30, 20, 10, 0.40) 0%,
+      rgba(30, 20, 10, 0.55) 60%,
+      rgba(30, 20, 10, 0.65) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.label {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: clamp(11px, 1.5vw, 15px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 28px;
+}
+
+.names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 40px);
+  margin-bottom: 24px;
+  flex-wrap: nowrap;
+}
+
+.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 11vw, 110px);
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 7vw, 68px);
+  font-weight: 300;
+  color: var(--gold);
+  font-style: italic;
+  line-height: 1;
+}
+
+.dateLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.dateDecor {
+  color: var(--gold);
+  font-size: 16px;
+}
+
+.date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 3.5vw, 26px);
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: max(28px, env(safe-area-inset-bottom, 28px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1.15);
+  }
+}
+
+.fadeIn {
+  animation: fadeInDown 1.2s ease both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

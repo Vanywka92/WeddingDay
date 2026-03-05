@@ -1,0 +1,4 @@
+/* App-level styles — section transitions */
+main > section + section {
+  /* Sections are self-contained with their own background */
+}
