@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import Database from 'better-sqlite3';
@@ -6,6 +7,28 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+async function sendTelegramNotification(full_name, phone) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) return;
+
+  const text =
+    `🎉 *Новый гость подтвердил участие!*\n\n` +
+    `👤 *ФИО:* ${full_name}\n` +
+    `📞 *Телефон:* ${phone}`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+    });
+  } catch (err) {
+    console.error('Telegram notification failed:', err.message);
+  }
+}
 
 const app = express();
 const PORT = 3001;
@@ -38,6 +61,8 @@ app.post('/api/rsvp', (req, res) => {
 
   const stmt = db.prepare('INSERT INTO guests (full_name, phone) VALUES (?, ?)');
   const result = stmt.run(full_name.trim(), phone.trim());
+
+  sendTelegramNotification(full_name.trim(), phone.trim());
 
   res.json({ success: true, id: result.lastInsertRowid });
 });
