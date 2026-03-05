@@ -5,6 +5,28 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
+async function sendTelegramNotification(full_name, phone) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) return;
+
+  const text =
+    `🎉 *Новый гость подтвердил участие!*\n\n` +
+    `👤 *ФИО:* ${full_name}\n` +
+    `📞 *Телефон:* ${phone}`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+    });
+  } catch (err) {
+    console.error('Telegram notification failed:', err.message);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -35,6 +57,8 @@ export default async function handler(req, res) {
   if (error) {
     return res.status(500).json({ error: 'Ошибка при сохранении данных' });
   }
+
+  await sendTelegramNotification(full_name.trim(), phone.trim());
 
   return res.status(200).json({ success: true, id: data.id });
 }
