@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function sendTelegramNotification(full_name, phone) {
+async function sendTelegramNotification(full_name, phone, totalCount) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -17,7 +17,8 @@ async function sendTelegramNotification(full_name, phone) {
   const text =
     `🎉 *Новый гость подтвердил участие!*\n\n` +
     `👤 *ФИО:* ${full_name}\n` +
-    `📞 *Телефон:* ${phone}`;
+    `📞 *Телефон:* ${phone}\n\n` +
+    `👥 *Всего записалось:* ${totalCount} чел.`;
 
   try {
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -62,7 +63,8 @@ app.post('/api/rsvp', (req, res) => {
   const stmt = db.prepare('INSERT INTO guests (full_name, phone) VALUES (?, ?)');
   const result = stmt.run(full_name.trim(), phone.trim());
 
-  sendTelegramNotification(full_name.trim(), phone.trim());
+  const { total } = db.prepare('SELECT COUNT(*) as total FROM guests').get();
+  sendTelegramNotification(full_name.trim(), phone.trim(), total);
 
   res.json({ success: true, id: result.lastInsertRowid });
 });

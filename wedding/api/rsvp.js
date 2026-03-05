@@ -5,7 +5,7 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-async function sendTelegramNotification(full_name, phone) {
+async function sendTelegramNotification(full_name, phone, totalCount) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -14,7 +14,8 @@ async function sendTelegramNotification(full_name, phone) {
   const text =
     `🎉 *Новый гость подтвердил участие!*\n\n` +
     `👤 *ФИО:* ${full_name}\n` +
-    `📞 *Телефон:* ${phone}`;
+    `📞 *Телефон:* ${phone}\n\n` +
+    `👥 *Всего записалось:* ${totalCount} чел.`;
 
   try {
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -58,7 +59,11 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Ошибка при сохранении данных' });
   }
 
-  await sendTelegramNotification(full_name.trim(), phone.trim());
+  const { count } = await supabase
+    .from('guests')
+    .select('*', { count: 'exact', head: true });
+
+  await sendTelegramNotification(full_name.trim(), phone.trim(), count);
 
   return res.status(200).json({ success: true, id: data.id });
 }
