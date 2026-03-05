@@ -21,7 +21,14 @@ async function sendTelegramNotification(full_name, phone, totalCount) {
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: 'Markdown',
+        ...(process.env.TELEGRAM_THREAD_ID && {
+          message_thread_id: Number(process.env.TELEGRAM_THREAD_ID),
+        }),
+      }),
     });
   } catch (err) {
     console.error('Telegram notification failed:', err.message);
