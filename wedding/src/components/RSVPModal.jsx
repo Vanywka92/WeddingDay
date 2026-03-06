@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Modal, Form, Input, Button, ConfigProvider, message } from 'antd';
-import { UserOutlined, PhoneOutlined, HeartFilled } from '@ant-design/icons';
-import styles from '../styles/RSVPModal.module.css';
+import { useState } from "react";
+import { Modal, Form, Input, Button, ConfigProvider, message } from "antd";
+import { UserOutlined, HeartFilled } from "@ant-design/icons";
+import Confetti from "./Confetti";
+import styles from "../styles/RSVPModal.module.css";
 
 export default function RSVPModal({ open, onClose }) {
   const [form] = Form.useForm();
@@ -11,26 +12,26 @@ export default function RSVPModal({ open, onClose }) {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           full_name: values.full_name,
-          phone: values.phone,
+          phone: "+7" + values.phone.replace(/\D/g, ""),
         }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        message.error(data.error || 'Произошла ошибка. Попробуйте ещё раз.');
+        message.error(data.error || "Произошла ошибка. Попробуйте ещё раз.");
         return;
       }
 
       setSuccess(true);
       form.resetFields();
     } catch {
-      message.error('Не удалось отправить данные. Проверьте подключение.');
+      message.error("Не удалось отправить данные. Проверьте подключение.");
     } finally {
       setLoading(false);
     }
@@ -46,11 +47,11 @@ export default function RSVPModal({ open, onClose }) {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#c8a96e',
-          fontFamily: "'Lato', sans-serif",
+          colorPrimary: "#c8a96e",
+          fontFamily: "'Cormorant Garamond', serif",
           borderRadius: 2,
-          colorBorder: '#e8d9bc',
-          colorBgContainer: '#faf7f2',
+          colorBorder: "#e8d9bc",
+          colorBgContainer: "#faf7f2",
         },
       }}
     >
@@ -65,15 +66,15 @@ export default function RSVPModal({ open, onClose }) {
           content: {
             borderRadius: 4,
             padding: 0,
-            overflow: 'hidden',
+            overflow: "hidden",
           },
           mask: {
-            backdropFilter: 'blur(4px)',
-            WebkitBackdropFilter: 'blur(4px)',
-            backgroundColor: 'rgba(61, 53, 48, 0.55)',
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            backgroundColor: "rgba(61, 53, 48, 0.55)",
           },
           wrapper: {
-            padding: '0 12px',
+            padding: "0 12px",
           },
         }}
       >
@@ -116,8 +117,8 @@ function FormView({ form, loading, onSubmit, onCancel }) {
             name="full_name"
             label={<span className={styles.fieldLabel}>Ваше ФИО</span>}
             rules={[
-              { required: true, message: 'Пожалуйста, введите ваше ФИО' },
-              { min: 2, message: 'ФИО слишком короткое' },
+              { required: true, message: "Пожалуйста, введите ваше ФИО" },
+              { min: 2, message: "ФИО слишком короткое" },
             ]}
           >
             <Input
@@ -132,18 +133,36 @@ function FormView({ form, loading, onSubmit, onCancel }) {
             name="phone"
             label={<span className={styles.fieldLabel}>Номер телефона</span>}
             rules={[
-              { required: true, message: 'Пожалуйста, введите номер телефона' },
+              { required: true, message: "Пожалуйста, введите номер телефона" },
               {
-                pattern: /^[\+\d][\d\s\-\(\)]{6,}$/,
-                message: 'Введите корректный номер телефона',
+                validator(_, value) {
+                  const digits = (value || "").replace(/\D/g, "");
+                  if (digits.length === 10) return Promise.resolve();
+                  return Promise.reject(
+                    new Error("Введите 10 цифр: 927-222-22-22"),
+                  );
+                },
               },
             ]}
           >
             <Input
-              prefix={<PhoneOutlined className={styles.inputIcon} />}
-              placeholder="+7 (999) 123-45-67"
+              addonBefore={
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15 }}>
+                  +7
+                </span>
+              }
+              placeholder="927-222-22-22"
+              maxLength={13}
               size="large"
               className={styles.input}
+              onChange={(e) => {
+                const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                let fmt = digits.slice(0, 3);
+                if (digits.length > 3) fmt += "-" + digits.slice(3, 6);
+                if (digits.length > 6) fmt += "-" + digits.slice(6, 8);
+                if (digits.length > 8) fmt += "-" + digits.slice(8, 10);
+                form.setFieldValue("phone", fmt);
+              }}
             />
           </Form.Item>
 
@@ -158,7 +177,11 @@ function FormView({ form, loading, onSubmit, onCancel }) {
             >
               Подтвердить участие
             </Button>
-            <button className={styles.cancelBtn} type="button" onClick={onCancel}>
+            <button
+              className={styles.cancelBtn}
+              type="button"
+              onClick={onCancel}
+            >
               Отмена
             </button>
           </div>
@@ -170,23 +193,22 @@ function FormView({ form, loading, onSubmit, onCancel }) {
 
 function SuccessView({ onClose }) {
   return (
-    <div className={styles.successView}>
-      <div className={styles.successIcon}>
-        <HeartFilled />
+    <>
+      <Confetti />
+      <div className={styles.successView}>
+        <div className={styles.successIcon}>
+          <HeartFilled />
+        </div>
+        <h3 className={styles.successTitle}>Ждём вас!</h3>
+        <p className={styles.successText}>
+          Спасибо за подтверждение. Мы очень рады, что вы будете с нами в этот
+          особенный день.
+        </p>
+        <p className={styles.successDate}>15 августа 2026 · 17:00</p>
+        <Button onClick={onClose} size="large" className={styles.closeBtn}>
+          Закрыть
+        </Button>
       </div>
-      <h3 className={styles.successTitle}>Ждём вас!</h3>
-      <p className={styles.successText}>
-        Спасибо за подтверждение. Мы очень рады, что вы будете с нами в этот
-        особенный день.
-      </p>
-      <p className={styles.successDate}>15 августа 2026 · 17:00</p>
-      <Button
-        onClick={onClose}
-        size="large"
-        className={styles.closeBtn}
-      >
-        Закрыть
-      </Button>
-    </div>
+    </>
   );
 }

@@ -13,7 +13,7 @@ export default function InviteSection() {
       <div className={styles.container}>
         <div
           ref={r1}
-          className={`reveal ${v1 ? 'visible' : ''} ${styles.eyebrow}`}
+          className={`reveal-scale ${v1 ? 'visible' : ''} ${styles.eyebrow}`}
         >
           <span className={styles.leaf}>✦</span>
           <span>Дорогие друзья</span>
@@ -22,7 +22,7 @@ export default function InviteSection() {
 
         <h2
           ref={r2}
-          className={`reveal reveal-delay-2 ${v2 ? 'visible' : ''} ${styles.heading}`}
+          className={`reveal reveal-delay-2 line-draw ${v2 ? 'visible' : ''} ${styles.heading}`}
         >
           Мы рады пригласить вас разделить с нами этот особенный день
         </h2>
@@ -33,7 +33,7 @@ export default function InviteSection() {
 
         <p
           ref={r3}
-          className={`reveal reveal-delay-3 ${v3 ? 'visible' : ''} ${styles.text}`}
+          className={`reveal-blur reveal-delay-3 ${v3 ? 'visible' : ''} ${styles.text}`}
         >
           В этот прекрасный день мы соединим наши сердца и жизни в присутствии
           самых близких и дорогих нам людей. Ваше присутствие сделает наш

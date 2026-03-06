@@ -1,14 +1,34 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Button } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import RSVPModal from './RSVPModal';
 import styles from '../styles/RSVPSection.module.css';
 
+const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
 export default function RSVPSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const { ref: r1, isVisible: v1 } = useScrollReveal();
   const { ref: r2, isVisible: v2 } = useScrollReveal();
+  const magnetRef = useRef(null);
+
+  const onMagnetMove = useCallback((e) => {
+    if (isTouch || !magnetRef.current) return;
+    const rect = magnetRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width  / 2;
+    const cy = rect.top  + rect.height / 2;
+    const dx = (e.clientX - cx) * 0.32;
+    const dy = (e.clientY - cy) * 0.32;
+    magnetRef.current.style.transition = 'transform 0.15s ease';
+    magnetRef.current.style.transform  = `translate(${dx}px, ${dy}px)`;
+  }, []);
+
+  const onMagnetLeave = useCallback(() => {
+    if (!magnetRef.current) return;
+    magnetRef.current.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    magnetRef.current.style.transform  = '';
+  }, []);
 
   return (
     <>
@@ -36,15 +56,19 @@ export default function RSVPSection() {
           <div
             ref={r2}
             className={`reveal reveal-delay-2 ${v2 ? 'visible' : ''}`}
+            onMouseMove={onMagnetMove}
+            onMouseLeave={onMagnetLeave}
           >
-            <Button
-              size="large"
-              className={styles.rsvpBtn}
-              onClick={() => setModalOpen(true)}
-              icon={<HeartOutlined />}
-            >
-              Я приду
-            </Button>
+            <div ref={magnetRef} style={{ display: 'inline-block' }}>
+              <Button
+                size="large"
+                className={styles.rsvpBtn}
+                onClick={() => setModalOpen(true)}
+                icon={<HeartOutlined />}
+              >
+                Я приду
+              </Button>
+            </div>
           </div>
         </div>
       </section>

@@ -1,0 +1,121 @@
+.section {
+  background: var(--ivory);
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+
+.section::before {
+  top: 0;
+}
+
+.section::after {
+  bottom: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+}
+
+.leaf {
+  font-size: 9px;
+}
+
+.units {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 clamp(20px, 4vw, 56px);
+  position: relative;
+}
+
+.unit+.unit::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 20px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+}
+
+.valueWrap {
+  height: clamp(56px, 10vw, 90px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 9vw, 88px);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: 2px;
+  display: block;
+  animation: flipIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: translateY(-60%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (max-width: 480px) {
+  .units {
+    gap: 0;
+  }
+
+  .unit {
+    padding: 0 clamp(12px, 5vw, 24px);
+  }
+
+  .section {
+    padding: 56px 16px;
+  }
+}

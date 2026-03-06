@@ -34,7 +34,7 @@ export default function DetailsSection() {
       <div className={styles.container}>
         <div
           ref={ref}
-          className={`reveal ${isVisible ? 'visible' : ''} ${styles.header}`}
+          className={`reveal-blur ${isVisible ? 'visible' : ''} ${styles.header}`}
         >
           <p className={styles.eyebrow}>Детали торжества</p>
           <h2 className={styles.heading}>Важная информация</h2>
@@ -56,7 +56,7 @@ function DetailCard({ card, delay }) {
   return (
     <div
       ref={ref}
-      className={`reveal reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.card}`}
+      className={`reveal-scale reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.card}`}
     >
       <div className={styles.cardIcon}>{card.icon}</div>
       <p className={styles.cardLabel}>{card.label}</p>

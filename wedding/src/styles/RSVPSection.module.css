@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1920&q=85');
+  background-image: url('../img/rsvp.png');
   background-size: cover;
   background-position: center;
 }
@@ -26,12 +26,10 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(250, 247, 242, 0.94) 0%,
-    rgba(244, 237, 227, 0.91) 50%,
-    rgba(250, 247, 242, 0.94) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(250, 247, 242, 0.94) 0%,
+      rgba(244, 237, 227, 0.91) 50%,
+      rgba(250, 247, 242, 0.94) 100%);
 }
 
 .content {
@@ -52,7 +50,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -76,7 +74,7 @@
 }
 
 .subtext {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 15px;
   font-weight: 300;
   color: var(--text-light);
@@ -91,7 +89,7 @@
 .rsvpBtn {
   height: 56px !important;
   padding: 0 52px !important;
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Cormorant Garamond', serif !important;
   font-size: 14px !important;
   letter-spacing: 3px !important;
   text-transform: uppercase !important;
@@ -146,10 +144,10 @@
 }
 
 .footerDate {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 12px;
   letter-spacing: 3px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
   margin-bottom: 14px;
 }

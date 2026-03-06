@@ -1,5 +1,8 @@
+import { useRef, useCallback } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from '../styles/GallerySection.module.css';
+
+const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
 const photos = [
   {
@@ -44,13 +47,40 @@ export default function GallerySection() {
 
 function GalleryItem({ photo, delay }) {
   const { ref, isVisible } = useScrollReveal(0.1);
+  const innerRef = useRef(null);
+
+  const onMove = useCallback((e) => {
+    if (isTouch || !innerRef.current) return;
+    const rect = innerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    innerRef.current.style.transition = 'transform 0.1s ease';
+    innerRef.current.style.transform =
+      `perspective(700px) rotateY(${x * 11}deg) rotateX(${-y * 11}deg) scale3d(1.03,1.03,1.03)`;
+  }, []);
+
+  const onLeave = useCallback(() => {
+    if (!innerRef.current) return;
+    innerRef.current.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    innerRef.current.style.transform = '';
+  }, []);
 
   return (
     <div
       ref={ref}
-      className={`reveal reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.item}`}
+      className={`reveal-scale reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.item}`}
     >
-      <img src={photo.src} alt={photo.alt} className={styles.img} />
+      <div
+        ref={innerRef}
+        className={styles.tilt}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+      >
+        <img src={photo.src} alt={photo.alt} className={styles.img} />
+        <div className={styles.overlay}>
+          <span className={styles.caption}>{photo.alt}</span>
+        </div>
+      </div>
     </div>
   );
 }
