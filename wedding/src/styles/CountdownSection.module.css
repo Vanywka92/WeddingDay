@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -76,7 +76,7 @@
 }
 
 .value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(52px, 9vw, 88px);
   font-weight: 300;
   color: var(--text);
@@ -99,7 +99,7 @@
 }
 
 .label {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;

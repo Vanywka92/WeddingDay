@@ -57,7 +57,7 @@
 }
 
 .badgeText {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -69,7 +69,7 @@
 }
 
 .eyebrow {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -78,7 +78,7 @@
 }
 
 .venueName {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3.5vw, 52px);
   font-weight: 400;
   color: var(--text);
@@ -107,7 +107,7 @@
 }
 
 .detailTitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
 }
 
 .detailValue {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 16px;
   color: var(--text);
   line-height: 1.5;
@@ -125,7 +125,7 @@
 .mapLink {
   display: inline-flex;
   align-items: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 14px;
   letter-spacing: 1px;
   color: var(--gold-dark);

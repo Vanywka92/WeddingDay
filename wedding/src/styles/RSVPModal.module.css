@@ -26,7 +26,7 @@
 }
 
 .modalEyebrow {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -35,7 +35,7 @@
 }
 
 .modalTitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 28px;
   font-weight: 400;
   color: var(--text);
@@ -43,7 +43,7 @@
 }
 
 .modalSubtitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 14px;
   color: var(--text-light);
   font-weight: 300;
@@ -54,7 +54,7 @@
 }
 
 .fieldLabel {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -69,7 +69,7 @@
 
 .input {
   border-radius: 2px !important;
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Playfair Display', serif !important;
   /* 16px — iOS Safari не зумит поля ввода при font-size >= 16px */
   font-size: 16px !important;
 }
@@ -80,7 +80,7 @@
 
 .submitBtn {
   height: 52px !important;
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Playfair Display', serif !important;
   font-size: 13px !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
@@ -105,7 +105,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 13px;
   color: var(--text-light);
   letter-spacing: 1px;
@@ -149,7 +149,7 @@
 }
 
 .successTitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 34px;
   font-weight: 400;
   color: var(--text);
@@ -157,7 +157,7 @@
 }
 
 .successText {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 15px;
   font-weight: 300;
   color: var(--text-light);
@@ -169,7 +169,7 @@
 }
 
 .successDate {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 19px;
   font-style: italic;
   color: var(--gold);
@@ -179,7 +179,7 @@
 .closeBtn {
   height: 48px !important;
   padding: 0 36px !important;
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: 'Playfair Display', serif !important;
   font-size: 12px !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;

@@ -9,7 +9,7 @@
 }
 
 .eyebrow {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -18,7 +18,7 @@
 }
 
 .heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 4vw, 50px);
   font-weight: 400;
   color: var(--text);
@@ -68,7 +68,7 @@
 }
 
 .caption {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 10px;
   letter-spacing: 2.5px;
   text-transform: uppercase;

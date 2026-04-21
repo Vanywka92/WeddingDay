@@ -1,6 +1,4 @@
 import { useState, useRef, useCallback } from 'react';
-import { Button } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import RSVPModal from './RSVPModal';
 import styles from '../styles/RSVPSection.module.css';
@@ -60,14 +58,12 @@ export default function RSVPSection() {
             onMouseLeave={onMagnetLeave}
           >
             <div ref={magnetRef} style={{ display: 'inline-block' }}>
-              <Button
-                size="large"
+              <button
                 className={styles.rsvpBtn}
                 onClick={() => setModalOpen(true)}
-                icon={<HeartOutlined />}
               >
-                Я приду
-              </Button>
+                <span className={styles.rsvpBtnText}>Я приду</span>
+              </button>
             </div>
           </div>
         </div>

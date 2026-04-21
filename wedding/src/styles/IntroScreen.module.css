@@ -35,7 +35,7 @@
 }
 
 .initial {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(72px, 18vw, 160px);
   font-weight: 300;
   color: #fff;
@@ -44,7 +44,7 @@
 }
 
 .amp {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(40px, 9vw, 80px);
   font-weight: 300;
   font-style: italic;
@@ -64,7 +64,7 @@
 }
 
 .date {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(16px, 2vw, 26px);
   letter-spacing: 5px;
   text-transform: uppercase;

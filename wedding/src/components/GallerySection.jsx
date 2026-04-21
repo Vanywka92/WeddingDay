@@ -1,25 +1,35 @@
-import { useRef, useCallback } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import styles from '../styles/GallerySection.module.css';
+import { useRef, useCallback } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
+import styles from "../styles/GallerySection.module.css";
+import photo1 from "../img/1.JPG";
+import photo2 from "../img/2.JPG";
+import photo7 from "../img/7.JPG";
+import photo4 from "../img/4.JPG";
+import photo5 from "../img/5.JPG";
+import photo6 from "../img/6.JPG";
 
-const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+const isTouch = window.matchMedia(
+  "(hover: none) and (pointer: coarse)",
+).matches;
 
 const photos = [
   {
-    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=85',
-    alt: 'Обручальные кольца',
+    src: photo2,
   },
   {
-    src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=85',
-    alt: 'Свадебный торт',
+    src: photo4,
   },
   {
-    src: 'https://images.unsplash.com/photo-1501901609772-df0848060b33?w=700&q=85',
-    alt: 'Цветочное украшение',
+    src: photo5,
   },
   {
-    src: 'https://images.unsplash.com/photo-1525772764200-be829a350797?w=700&q=85',
-    alt: 'Букет невесты',
+    src: photo1,
+  },
+  {
+    src: photo7,
+  },
+  {
+    src: photo6,
   },
 ];
 
@@ -30,10 +40,10 @@ export default function GallerySection() {
     <section className={styles.section}>
       <div
         ref={ref}
-        className={`reveal ${isVisible ? 'visible' : ''} ${styles.header}`}
+        className={`reveal ${isVisible ? "visible" : ""} ${styles.header}`}
       >
         <p className={styles.eyebrow}>Наш день</p>
-        <h2 className={styles.heading}>Атмосфера торжества</h2>
+        {/* <h2 className={styles.heading}>Атмосфера торжества</h2> */}
       </div>
 
       <div className={styles.grid}>
@@ -52,23 +62,23 @@ function GalleryItem({ photo, delay }) {
   const onMove = useCallback((e) => {
     if (isTouch || !innerRef.current) return;
     const rect = innerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width  - 0.5;
-    const y = (e.clientY - rect.top)  / rect.height - 0.5;
-    innerRef.current.style.transition = 'transform 0.1s ease';
-    innerRef.current.style.transform =
-      `perspective(700px) rotateY(${x * 11}deg) rotateX(${-y * 11}deg) scale3d(1.03,1.03,1.03)`;
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    innerRef.current.style.transition = "transform 0.1s ease";
+    innerRef.current.style.transform = `perspective(700px) rotateY(${x * 11}deg) rotateX(${-y * 11}deg) scale3d(1.03,1.03,1.03)`;
   }, []);
 
   const onLeave = useCallback(() => {
     if (!innerRef.current) return;
-    innerRef.current.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-    innerRef.current.style.transform = '';
+    innerRef.current.style.transition =
+      "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+    innerRef.current.style.transform = "";
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`reveal-scale reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.item}`}
+      className={`reveal-scale reveal-delay-${delay} ${isVisible ? "visible" : ""} ${styles.item}`}
     >
       <div
         ref={innerRef}

@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../img/rsvp.png');
+  background-image: url('../img/footer.JPG');
   background-size: cover;
   background-position: center;
 }
@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 11px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -64,7 +64,7 @@
 }
 
 .heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 6vw, 58px);
   font-weight: 400;
   color: var(--text);
@@ -74,7 +74,7 @@
 }
 
 .subtext {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 15px;
   font-weight: 300;
   color: var(--text-light);
@@ -87,26 +87,46 @@
 }
 
 .rsvpBtn {
-  height: 56px !important;
-  padding: 0 52px !important;
-  font-family: 'Cormorant Garamond', serif !important;
-  font-size: 14px !important;
-  letter-spacing: 3px !important;
-  text-transform: uppercase !important;
-  background-color: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: var(--white) !important;
-  border-radius: 2px !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 4px 24px rgba(200, 169, 110, 0.35) !important;
+  position: relative;
+  width: 210px;
+  height: 195px;
+  background-color: var(--gold);
+  clip-path: path("M105,26 C105,26 84,8 57,8 C23,8 0,34 0,64 C0,120 105,174 105,174 C105,174 210,120 210,64 C210,34 187,8 153,8 C126,8 105,26 105,26 Z");
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 44px;
+  color: var(--white);
+  filter: drop-shadow(0 6px 20px rgba(200, 169, 110, 0.55));
+  animation: heartbeat 2.8s ease-in-out infinite;
+  transition: filter 0.3s ease;
+}
+
+.rsvpBtnText {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.07); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.04); }
+  56%       { transform: scale(1); }
 }
 
 @media (hover: hover) {
   .rsvpBtn:hover {
-    background-color: var(--gold-dark) !important;
-    border-color: var(--gold-dark) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 32px rgba(200, 169, 110, 0.45) !important;
+    background-color: var(--gold-dark);
+    filter: drop-shadow(0 10px 32px rgba(200, 169, 110, 0.7));
+    animation: none;
+    transform: scale(1.06);
   }
 }
 
@@ -121,9 +141,10 @@
   }
 
   .rsvpBtn {
-    width: 100% !important;
-    padding: 0 24px !important;
-    letter-spacing: 2px !important;
+    width: 180px;
+    height: 167px;
+    clip-path: path("M90,22 C90,22 72,7 49,7 C20,7 0,29 0,55 C0,103 90,149 90,149 C90,149 180,103 180,55 C180,29 160,7 131,7 C108,7 90,22 90,22 Z");
+    padding-bottom: 38px;
   }
 }
 
@@ -135,7 +156,7 @@
 }
 
 .footerNames {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(26px, 5vw, 42px);
   font-weight: 300;
   color: var(--gold-light);
@@ -144,7 +165,7 @@
 }
 
 .footerDate {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 12px;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.45);
@@ -153,7 +174,7 @@
 }
 
 .footerNote {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 18px;
   color: var(--gold);
