@@ -14,7 +14,7 @@
 .bg {
   position: absolute;
   inset: -20%;
-  background-image: url('../img/header2.png');
+  background-image: url('../img/header2.jpg');
   background-size: cover;
   background-position: center;
   will-change: transform;
@@ -44,7 +44,7 @@
   color: #fff;
   padding: 0 20px;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 .label {
