@@ -27,8 +27,8 @@ export default function App() {
         <LocationSection />
         <DetailsSection />
         <GallerySection />
-        <RSVPSection />
         <CountdownSection />
+        <RSVPSection />
       </main>
     </>
   );

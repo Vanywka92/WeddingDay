@@ -1,6 +1,7 @@
 import { CalendarOutlined, ClockCircleOutlined, SkinOutlined } from '@ant-design/icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import FloatingPetals from './FloatingPetals';
+import TornEdge from './TornEdge';
 import styles from '../styles/DetailsSection.module.css';
 
 const cards = [
@@ -31,6 +32,7 @@ export default function DetailsSection() {
     <section className={styles.section}>
       <div className={styles.bgImage} />
       <div className={styles.bgOverlay} />
+      <TornEdge position="top" color="var(--ivory)" />
       <FloatingPetals />
 
       <div className={styles.container}>

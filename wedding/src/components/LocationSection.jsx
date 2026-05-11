@@ -5,6 +5,7 @@ import {
   PhoneOutlined,
 } from "@ant-design/icons";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import TornEdge from "./TornEdge";
 import styles from "../styles/LocationSection.module.css";
 import locationImg from "../img/location.jpg";
 
@@ -34,6 +35,7 @@ export default function LocationSection() {
 
   return (
     <section className={styles.section}>
+      <TornEdge position="top" color="var(--forest)" />
       <div className={styles.inner}>
         <div className={styles.imageCol}>
           <div

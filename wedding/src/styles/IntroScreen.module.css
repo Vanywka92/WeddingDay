@@ -2,25 +2,51 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #1a0f08;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: opacity 0.75s ease;
 }
 
 .exit {
-  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bg {
+  position: absolute;
+  inset: -1%;
+  background-image: url('../img/header2.JPG');
+  background-size: cover;
+  background-position: center top;
+  filter: blur(2px) grayscale(60%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 6, 4, 0.35) 0%,
+    rgba(10, 6, 4, 0.55) 60%,
+    rgba(10, 6, 4, 0.65) 100%
+  );
 }
 
 .content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s;
+  color: #fff;
+  text-align: center;
+  padding: 0 28px;
 }
 
 .contentIn {
@@ -28,53 +54,57 @@
   transform: translateY(0);
 }
 
-.names {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 4vw, 36px);
-}
-
-.initial {
-  font-family: 'Caveat', cursive;
-  font-size: clamp(72px, 18vw, 160px);
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: 4px;
-  line-height: 1;
-}
-
-.amp {
+.received {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(40px, 9vw, 80px);
-  font-weight: 300;
-  font-style: italic;
-  color: #c8a96e;
-  line-height: 1;
-}
-
-.divider {
-  height: 1px;
-  width: 0;
-  background: linear-gradient(90deg, transparent, #c8a96e, transparent);
-  transition: width 0.9s ease 0.5s;
-}
-
-.contentIn .divider {
-  width: min(220px, 45vw);
-}
-
-.date {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(16px, 2vw, 26px);
-  letter-spacing: 5px;
+  font-size: clamp(12px, 2.8vw, 17px);
+  letter-spacing: 7px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.55s ease 0.7s, transform 0.55s ease 0.7s;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
 }
 
-.contentIn .date {
+.invite {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(54px, 14vw, 100px);
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.tap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 52px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(12px, 2vw, 15px);
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.8s;
+}
+
+.contentIn .tap {
   opacity: 1;
-  transform: translateY(0);
+}
+
+.tapIcon {
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.85);
+  animation: tapPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes tapPulse {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
 }

@@ -1,37 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from "../styles/IntroScreen.module.css";
 
 export default function IntroScreen({ onDone }) {
-  const [phase, setPhase] = useState("idle");
+  const [ready, setReady] = useState(false);
+  const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const t0 = setTimeout(() => setPhase("in"), 80);
-    const t1 = setTimeout(() => setPhase("out"), 2800);
-    const t2 = setTimeout(() => {
-      document.body.style.overflow = "";
-      onDone();
-    }, 4100);
+    const t = setTimeout(() => setReady(true), 100);
     return () => {
-      [t0, t1, t2].forEach(clearTimeout);
+      clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [onDone]);
+  }, []);
+
+  const handleTap = useCallback(() => {
+    if (exiting) return;
+    setExiting(true);
+    setTimeout(() => {
+      document.body.style.overflow = "";
+      onDone();
+    }, 750);
+  }, [exiting, onDone]);
 
   return (
-    <div className={`${styles.screen} ${phase === "out" ? styles.exit : ""}`}>
-      <div
-        className={`${styles.content} ${phase === "in" || phase === "out" ? styles.contentIn : ""}`}
-      >
-        <div className={styles.names}>
-          <span className={styles.initial}>И</span>
-          <span className={styles.amp}>&amp;</span>
-          <span className={styles.initial}>Ю</span>
+    <div
+      className={`${styles.screen} ${exiting ? styles.exit : ""}`}
+      onClick={handleTap}
+    >
+      <div className={styles.bg} />
+      <div className={styles.overlay} />
+
+      <div className={`${styles.content} ${ready ? styles.contentIn : ""}`}>
+        <p className={styles.received}>ВЫ ПОЛУЧИЛИ</p>
+        <p className={styles.invite}>Приглашение</p>
+
+        <div className={styles.tap}>
+          <svg
+            className={styles.tapIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 11V6a2 2 0 0 1 4 0v5" />
+            <path d="M13 11V8a2 2 0 0 1 4 0v6a6 6 0 0 1-6 6H9a5 5 0 0 1-5-5v-2a2 2 0 0 1 4 0" />
+            <path d="M9 11a2 2 0 0 1 4 0" />
+          </svg>
+          <span>Для просмотра коснитесь экрана</span>
         </div>
-
-        <div className={styles.divider} />
-
-        <p className={styles.date}>15 августа 2026</p>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import RSVPModal from './RSVPModal';
+import TornEdge from './TornEdge';
 import styles from '../styles/RSVPSection.module.css';
 
 const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
@@ -31,6 +32,7 @@ export default function RSVPSection() {
   return (
     <>
       <section className={styles.section}>
+        <TornEdge position="top" color="var(--forest)" />
         <div className={styles.overlay} />
 
         <div className={styles.content}>

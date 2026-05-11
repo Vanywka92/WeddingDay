@@ -1,0 +1,19 @@
+.torn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: clamp(18px, 2.8vw, 32px);
+  display: block;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.top {
+  top: -1px;
+}
+
+.bottom {
+  bottom: -1px;
+  transform: scaleY(-1);
+}
