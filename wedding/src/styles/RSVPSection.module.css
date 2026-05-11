@@ -64,7 +64,7 @@
 }
 
 .heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: clamp(28px, 6vw, 58px);
   font-weight: 400;
   color: var(--text);
@@ -156,7 +156,7 @@
 }
 
 .footerNames {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: clamp(26px, 5vw, 42px);
   font-weight: 300;
   color: var(--gold-light);

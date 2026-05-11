@@ -1,9 +1,11 @@
 .section {
-  background-color: var(--white);
+  background-color: var(--forest);
   padding: 80px 20px;
 }
 
 .header {
+  position: relative;
+  z-index: 1;
   text-align: center;
   margin-bottom: 48px;
 }
@@ -18,13 +20,15 @@
 }
 
 .heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: clamp(28px, 4vw, 50px);
   font-weight: 400;
-  color: var(--text);
+  color: var(--forest-text);
 }
 
 .grid {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   display: grid;

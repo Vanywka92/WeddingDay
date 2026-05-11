@@ -1,0 +1,40 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petal {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50% 0 50% 0;
+  background: rgba(200, 169, 110, 0.28);
+  animation: petalFloat linear infinite;
+  pointer-events: none;
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 0.8;
+  }
+
+  45% {
+    transform: translateY(-45vh) rotate(200deg) translateX(28px);
+  }
+
+  88% {
+    opacity: 0.25;
+  }
+
+  100% {
+    transform: translateY(-110vh) rotate(420deg) translateX(-18px);
+    opacity: 0;
+  }
+}

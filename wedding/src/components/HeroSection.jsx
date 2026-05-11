@@ -51,10 +51,6 @@ export default function HeroSection() {
       ))}
 
       <div className={styles.content}>
-        <p className={`${styles.label} ${styles.fadeIn}`}>
-          Приглашение на свадьбу
-        </p>
-
         <div className={styles.names}>
           <span className={styles.name}>
             {"Иван".split("").map((ch, i) => (

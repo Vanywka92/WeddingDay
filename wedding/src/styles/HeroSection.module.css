@@ -67,7 +67,7 @@
 }
 
 .name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: clamp(44px, 11vw, 110px);
   font-weight: 300;
   letter-spacing: 2px;

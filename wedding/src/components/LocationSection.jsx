@@ -8,13 +8,15 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 import styles from "../styles/LocationSection.module.css";
 import locationImg from "../img/location.jpg";
 
-const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+const isTouch = window.matchMedia(
+  "(hover: none) and (pointer: coarse)",
+).matches;
 
 export default function LocationSection() {
   const { ref: r1, isVisible: v1 } = useScrollReveal();
   const { ref: r2, isVisible: v2 } = useScrollReveal();
   const { ref: r3, isVisible: v3 } = useScrollReveal();
-  const wrapRef  = useRef(null);
+  const wrapRef = useRef(null);
   const [imgY, setImgY] = useState(0);
 
   useEffect(() => {
@@ -35,29 +37,30 @@ export default function LocationSection() {
       <div className={styles.inner}>
         <div className={styles.imageCol}>
           <div
-            ref={(el) => { r1.current = el; wrapRef.current = el; }}
+            ref={(el) => {
+              r1.current = el;
+              wrapRef.current = el;
+            }}
             className={`reveal-left ${v1 ? "visible" : ""} ${styles.imageWrap}`}
           >
+            <h3
+              ref={r2}
+              className={`reveal-right ${v2 ? "visible" : ""} ${styles.eyebrow}`}
+            >
+              Место проведения
+            </h3>
             <img
               src={locationImg}
               alt="Место проведения"
               className={styles.image}
-              style={isTouch ? undefined : { transform: `translateY(${imgY}px)` }}
+              style={
+                isTouch ? undefined : { transform: `translateY(${imgY}px)` }
+              }
             />
-            <div className={styles.imageBadge}>
-              <span className={styles.badgeText}>Место торжества</span>
-            </div>
           </div>
         </div>
 
         <div className={styles.textCol}>
-          <p
-            ref={r2}
-            className={`reveal-right ${v2 ? "visible" : ""} ${styles.eyebrow}`}
-          >
-            Место проведения
-          </p>
-
           <h2
             className={`reveal-right reveal-delay-1 ${v2 ? "visible" : ""} ${styles.venueName}`}
           >

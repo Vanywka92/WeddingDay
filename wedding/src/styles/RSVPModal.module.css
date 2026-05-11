@@ -35,7 +35,7 @@
 }
 
 .modalTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: 28px;
   font-weight: 400;
   color: var(--text);
@@ -149,7 +149,7 @@
 }
 
 .successTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: 34px;
   font-weight: 400;
   color: var(--text);

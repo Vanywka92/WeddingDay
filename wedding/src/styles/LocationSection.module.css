@@ -2,6 +2,7 @@
   background-color: var(--ivory);
   padding: 80px 24px;
   position: relative;
+  overflow: hidden;
 }
 
 .section::before {
@@ -12,6 +13,34 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+
+.leafBandTop,
+.leafBandBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 140px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.leafBandTop {
+  top: 0;
+}
+
+.leafBandBottom {
+  bottom: 0;
+}
+
+.leafItem {
+  position: absolute;
+  top: 50%;
+  display: block;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(var(--scale, 1));
+  filter: drop-shadow(0 4px 8px rgba(40, 70, 30, 0.18));
+  will-change: transform;
 }
 
 .inner {
@@ -69,16 +98,16 @@
 }
 
 .eyebrow {
-  font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-size: 16px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--forest);
   margin-bottom: 14px;
+  text-align: center;
 }
 
 .venueName {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Caveat', cursive;
   font-size: clamp(28px, 3.5vw, 52px);
   font-weight: 400;
   color: var(--text);
@@ -169,5 +198,14 @@
 
   .venueName {
     margin-bottom: 24px;
+  }
+
+  .leafBandTop,
+  .leafBandBottom {
+    height: 80px;
+  }
+
+  .leafItem {
+    --scale: 0.55;
   }
 }

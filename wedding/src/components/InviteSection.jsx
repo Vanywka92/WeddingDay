@@ -16,7 +16,7 @@ export default function InviteSection() {
           className={`reveal-scale ${v1 ? 'visible' : ''} ${styles.eyebrow}`}
         >
           <span className={styles.leaf}>✦</span>
-          <span>Дорогие друзья</span>
+          <h2>Дорогие близкие и друзья!</h2>
           <span className={styles.leaf}>✦</span>
         </div>
 

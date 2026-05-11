@@ -1,5 +1,6 @@
 import { useRef, useCallback } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import FloatingPetals from "./FloatingPetals";
 import styles from "../styles/GallerySection.module.css";
 import photo1 from "../img/1.JPG";
 import photo2 from "../img/2.JPG";
@@ -38,6 +39,7 @@ export default function GallerySection() {
 
   return (
     <section className={styles.section}>
+      <FloatingPetals />
       <div
         ref={ref}
         className={`reveal ${isVisible ? "visible" : ""} ${styles.header}`}
