@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/MusicPlayer.module.css";
-import cover from "../img/1.JPG";
+import cover from "../img/1.webp";
 import Garland from "./Garland";
 
 const TRACK_SRC = "/music.mp3";
@@ -131,7 +131,7 @@ export default function MusicPlayer() {
 
         <div className={styles.coverWrap}>
           <div className={`${styles.cover} ${playing ? styles.coverSpin : ""}`}>
-            <img src={cover} alt="" />
+            <img src={cover} alt="" loading="lazy" decoding="async" />
             {/* <span className={styles.coverDot} aria-hidden="true" /> */}
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function MusicPlayer() {
           </button>
         </div>
 
-        <audio ref={audioRef} src={TRACK_SRC} loop preload="metadata" />
+        <audio ref={audioRef} src={TRACK_SRC} loop preload="none" />
       </div>
     </section>
   );

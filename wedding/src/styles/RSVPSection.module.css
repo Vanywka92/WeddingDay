@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../img/footer.JPG');
+  background-image: url('../img/footer.webp');
   background-size: cover;
   background-position: center;
 }

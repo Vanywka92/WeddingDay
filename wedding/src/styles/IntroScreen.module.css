@@ -15,7 +15,7 @@
 .bg {
   position: absolute;
   inset: -1%;
-  background-image: url('../img/header2.JPG');
+  background-image: url('../img/header2.webp');
   background-size: cover;
   background-position: center top;
   filter: blur(2px) grayscale(60%);

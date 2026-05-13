@@ -7,7 +7,7 @@ import {
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import TornEdge from "./TornEdge";
 import styles from "../styles/LocationSection.module.css";
-import locationImg from "../img/location.jpg";
+import locationImg from "../img/location.webp";
 
 const isTouch = window.matchMedia(
   "(hover: none) and (pointer: coarse)",
@@ -55,6 +55,8 @@ export default function LocationSection() {
               src={locationImg}
               alt="Место проведения"
               className={styles.image}
+              loading="lazy"
+              decoding="async"
               style={
                 isTouch ? undefined : { transform: `translateY(${imgY}px)` }
               }

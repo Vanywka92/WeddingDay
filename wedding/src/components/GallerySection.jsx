@@ -2,12 +2,12 @@ import { useRef, useCallback } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import FloatingPetals from "./FloatingPetals";
 import styles from "../styles/GallerySection.module.css";
-import photo1 from "../img/1.JPG";
-import photo2 from "../img/2.JPG";
-import photo7 from "../img/7.JPG";
-import photo4 from "../img/4.JPG";
-import photo5 from "../img/5.JPG";
-import photo6 from "../img/6.JPG";
+import photo1 from "../img/1.webp";
+import photo2 from "../img/2.webp";
+import photo7 from "../img/7.webp";
+import photo4 from "../img/4.webp";
+import photo5 from "../img/5.webp";
+import photo6 from "../img/6.webp";
 
 const isTouch = window.matchMedia(
   "(hover: none) and (pointer: coarse)",
@@ -88,7 +88,13 @@ function GalleryItem({ photo, delay }) {
         onMouseMove={onMove}
         onMouseLeave={onLeave}
       >
-        <img src={photo.src} alt={photo.alt} className={styles.img} />
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          className={styles.img}
+          loading="lazy"
+          decoding="async"
+        />
         <div className={styles.overlay}>
           <span className={styles.caption}>{photo.alt}</span>
         </div>
