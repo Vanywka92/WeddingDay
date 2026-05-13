@@ -14,24 +14,30 @@ import CursorTrail from "./components/CursorTrail";
 
 export default function App() {
   const [intro, setIntro] = useState(true);
+  const [introStarted, setIntroStarted] = useState(false);
+  const onIntroStart = useCallback(() => setIntroStarted(true), []);
   const onIntroDone = useCallback(() => setIntro(false), []);
+
+  const showMain = introStarted || !intro;
 
   return (
     <>
       <CursorTrail />
       <ScrollProgress />
-      {intro && <IntroScreen onDone={onIntroDone} />}
-      <main>
-        <MusicPlayer />
-        {/* <HeroSection /> */}
-        {/* <InviteSection /> */}
-        <SaveTheDateSection />
-        <LocationSection />
-        <DetailsSection />
-        <GallerySection />
-        <CountdownSection />
-        <RSVPSection />
-      </main>
+      {intro && <IntroScreen onStart={onIntroStart} onDone={onIntroDone} />}
+      {showMain && (
+        <main className="app-main app-main--fade-in">
+          <MusicPlayer />
+          {/* <HeroSection /> */}
+          {/* <InviteSection /> */}
+          <SaveTheDateSection />
+          <LocationSection />
+          <DetailsSection />
+          <GallerySection />
+          <CountdownSection />
+          <RSVPSection />
+        </main>
+      )}
     </>
   );
 }

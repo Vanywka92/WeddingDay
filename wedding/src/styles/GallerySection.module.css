@@ -11,19 +11,26 @@
 }
 
 .eyebrow {
-  font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 800;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--forest);
   margin-bottom: 12px;
 }
 
 .heading {
-  font-family: 'Caveat', cursive;
-  font-size: clamp(28px, 4vw, 50px);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--forest-text);
+  color: var(--forest);
+}
+
+.dress {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
 .grid {
@@ -34,6 +41,80 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+}
+
+.palette {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8px 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px 40px;
+  list-style: none;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.circle {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  box-shadow:
+    inset 0 -12px 26px rgba(0, 0, 0, 0.18),
+    inset 0 8px 16px rgba(255, 255, 255, 0.22),
+    0 12px 28px rgba(52, 61, 42, 0.16),
+    0 0 0 1px rgba(200, 169, 110, 0.35);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s ease;
+}
+
+.circle::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    inset 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.swatchName {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  color: var(--forest);
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .swatch:hover .circle {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 -12px 26px rgba(0, 0, 0, 0.18),
+      inset 0 8px 16px rgba(255, 255, 255, 0.28),
+      0 16px 36px rgba(52, 61, 42, 0.22),
+      0 0 0 1px rgba(200, 169, 110, 0.55);
+  }
+
+  .swatch:hover .circle::after {
+    opacity: 1;
+    inset: -4px;
+  }
 }
 
 .item {
@@ -119,5 +200,20 @@
 
   .item {
     aspect-ratio: 1/1;
+  }
+
+  .palette {
+    gap: 5px 10px;
+    padding: 4px 4px 12px;
+  }
+
+  .circle {
+    width: 78px;
+    height: 78px;
+  }
+
+  .swatchName {
+    font-size: 13px;
+    letter-spacing: 1px;
   }
 }

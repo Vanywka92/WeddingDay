@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import TornEdge from './TornEdge';
 import styles from '../styles/CountdownSection.module.css';
 
 const WEDDING = new Date('2026-08-15T17:00:00+03:00');
@@ -51,12 +52,13 @@ export default function CountdownSection() {
 
   return (
     <section className={styles.section}>
+      <TornEdge position="top" color="var(--white)" />
       <div
         ref={hRef}
         className={`reveal-blur ${hVis ? 'visible' : ''} ${styles.header}`}
       >
         <span className={styles.leaf}>✦</span>
-        <span>До торжества осталось</span>
+        <h2>До торжества осталось</h2>
         <span className={styles.leaf}>✦</span>
       </div>
 

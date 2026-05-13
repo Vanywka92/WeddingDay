@@ -6,24 +6,6 @@
   text-align: center;
 }
 
-.section::before,
-.section::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-}
-
-.section::before {
-  top: 0;
-}
-
-.section::after {
-  bottom: 0;
-}
-
 .header {
   display: flex;
   align-items: center;

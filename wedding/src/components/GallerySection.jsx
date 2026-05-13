@@ -1,37 +1,19 @@
 import { useRef, useCallback } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import FloatingPetals from "./FloatingPetals";
+import TornEdge from "./TornEdge";
 import styles from "../styles/GallerySection.module.css";
-import photo1 from "../img/1.webp";
-import photo2 from "../img/2.webp";
-import photo7 from "../img/7.webp";
-import photo4 from "../img/4.webp";
-import photo5 from "../img/5.webp";
-import photo6 from "../img/6.webp";
+import dress from "../img/dress.png";
 
-const isTouch = window.matchMedia(
-  "(hover: none) and (pointer: coarse)",
-).matches;
-
-const photos = [
-  {
-    src: photo2,
-  },
-  {
-    src: photo4,
-  },
-  {
-    src: photo5,
-  },
-  {
-    src: photo1,
-  },
-  {
-    src: photo7,
-  },
-  {
-    src: photo6,
-  },
+const palette = [
+  { name: "", hex: "rgb(41 70 45 / 99%)" },
+  { name: "", hex: "rgb(121 167 113)" },
+  { name: "", hex: "rgb(154 150 115)" },
+  { name: "", hex: "#c8a96e" },
+  { name: "", hex: "#ecdfc8" },
+  { name: "", hex: "rgb(66 48 23)" },
+  { name: "", hex: "rgb(194 172 191)" },
+  { name: "", hex: "rgb(2 2 2)" },
 ];
 
 export default function GallerySection() {
@@ -39,66 +21,45 @@ export default function GallerySection() {
 
   return (
     <section className={styles.section}>
+      <TornEdge position="top" color="var(--forest)" />
       <FloatingPetals />
+      <img src={dress} alt="Dress" className={styles.dress} />
       <div
         ref={ref}
         className={`reveal ${isVisible ? "visible" : ""} ${styles.header}`}
       >
-        <p className={styles.eyebrow}>Наш день</p>
-        {/* <h2 className={styles.heading}>Атмосфера торжества</h2> */}
+        <h2 className={styles.eyebrow}>Дресс-код</h2>
+        <p className={styles.heading}>
+          Мы очень ждем и с удовольствием готовимся к нашему незабываемому дню!
+          Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами
+          в политре торжества!
+        </p>
       </div>
 
-      <div className={styles.grid}>
-        {photos.map((photo, i) => (
-          <GalleryItem key={i} photo={photo} delay={i + 1} />
+      <ul className={styles.palette}>
+        {palette.map((color, i) => (
+          <PaletteSwatch key={color.name} color={color} delay={(i % 6) + 1} />
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
 
-function GalleryItem({ photo, delay }) {
+function PaletteSwatch({ color, delay }) {
   const { ref, isVisible } = useScrollReveal(0.1);
-  const innerRef = useRef(null);
-
-  const onMove = useCallback((e) => {
-    if (isTouch || !innerRef.current) return;
-    const rect = innerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    innerRef.current.style.transition = "transform 0.1s ease";
-    innerRef.current.style.transform = `perspective(700px) rotateY(${x * 11}deg) rotateX(${-y * 11}deg) scale3d(1.03,1.03,1.03)`;
-  }, []);
-
-  const onLeave = useCallback(() => {
-    if (!innerRef.current) return;
-    innerRef.current.style.transition =
-      "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
-    innerRef.current.style.transform = "";
-  }, []);
 
   return (
-    <div
+    <li
       ref={ref}
-      className={`reveal-scale reveal-delay-${delay} ${isVisible ? "visible" : ""} ${styles.item}`}
+      className={`reveal-scale reveal-delay-${delay} ${isVisible ? "visible" : ""} ${styles.swatch}`}
     >
-      <div
-        ref={innerRef}
-        className={styles.tilt}
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
-      >
-        <img
-          src={photo.src}
-          alt={photo.alt}
-          className={styles.img}
-          loading="lazy"
-          decoding="async"
-        />
-        <div className={styles.overlay}>
-          <span className={styles.caption}>{photo.alt}</span>
-        </div>
-      </div>
-    </div>
+      <span
+        className={styles.circle}
+        style={{ backgroundColor: color.hex }}
+        role="img"
+        aria-label={color.name}
+      />
+      <span className={styles.swatchName}>{color.name}</span>
+    </li>
   );
 }

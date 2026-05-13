@@ -1,27 +1,32 @@
-import { CalendarOutlined, ClockCircleOutlined, SkinOutlined } from '@ant-design/icons';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import FloatingPetals from './FloatingPetals';
-import TornEdge from './TornEdge';
-import styles from '../styles/DetailsSection.module.css';
+import { useScrollReveal } from "../hooks/useScrollReveal";
+import FloatingPetals from "./FloatingPetals";
+import TornEdge from "./TornEdge";
+import styles from "../styles/DetailsSection.module.css";
+import bokal from "../img/bokal.png";
+import guest from "../img/guest.png";
+import ceremoniya from "../img/ceremoniya.png";
+import fireworks from "../img/fireworks.png";
 
 const cards = [
   {
-    icon: <CalendarOutlined />,
-    label: 'Дата',
-    title: '15 августа 2026',
-    subtitle: 'Суббота',
+    icon: <img src={guest} alt="guest" className={styles.cardIcon} />,
+    label: "15:30",
+    title: "Сбор гостей",
   },
   {
-    icon: <ClockCircleOutlined />,
-    label: 'Время',
-    title: 'Сбор в 17:00',
-    subtitle: 'Церемония в 18:00',
+    icon: <img src={ceremoniya} alt="ceremoniya" className={styles.cardIcon} />,
+    label: "16:00",
+    title: "Выездная церемония",
   },
   {
-    icon: <SkinOutlined />,
-    label: 'Дресс-код',
-    title: 'Нежные тона',
-    subtitle: 'Белый, бежевый, розовый',
+    icon: <img src={bokal} alt="bokal" className={styles.cardIcon} />,
+    label: "17:00",
+    title: "Праздничный банкет",
+  },
+  {
+    icon: <img src={fireworks} alt="fireworks" className={styles.cardIcon} />,
+    label: "23:00",
+    title: "Финал вечера",
   },
 ];
 
@@ -38,10 +43,9 @@ export default function DetailsSection() {
       <div className={styles.container}>
         <div
           ref={ref}
-          className={`reveal-blur ${isVisible ? 'visible' : ''} ${styles.header}`}
+          className={`reveal-blur ${isVisible ? "visible" : ""} ${styles.header}`}
         >
-          <p className={styles.eyebrow}>Детали торжества</p>
-          <h2 className={styles.heading}>Важная информация</h2>
+          <h1 className={styles.eyebrow}>Программа дня</h1>
         </div>
 
         <div className={styles.cards}>
@@ -60,12 +64,11 @@ function DetailCard({ card, delay }) {
   return (
     <div
       ref={ref}
-      className={`reveal-scale reveal-delay-${delay} ${isVisible ? 'visible' : ''} ${styles.card}`}
+      className={`reveal-scale reveal-delay-${delay} ${isVisible ? "visible" : ""} ${styles.card}`}
     >
       <div className={styles.cardIcon}>{card.icon}</div>
-      <p className={styles.cardLabel}>{card.label}</p>
+      <p className={styles.cardTitle}>{card.label}</p>
       <p className={styles.cardTitle}>{card.title}</p>
-      <p className={styles.cardSubtitle}>{card.subtitle}</p>
     </div>
   );
 }

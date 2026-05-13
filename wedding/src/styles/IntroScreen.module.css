@@ -4,12 +4,19 @@
   z-index: 9999;
   cursor: pointer;
   overflow: hidden;
-  transition: opacity 0.75s ease;
+  background-color: #0a0604;
+  transition: opacity 1.1s ease;
 }
 
 .exit {
   opacity: 0;
   pointer-events: none;
+}
+
+.exit .content {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .bg {

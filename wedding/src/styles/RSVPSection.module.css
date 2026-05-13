@@ -50,8 +50,9 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: 800;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text-light);
@@ -106,8 +107,8 @@
 }
 
 .rsvpBtnText {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   line-height: 1;
@@ -175,8 +176,16 @@
 
 .footerNote {
   font-family: 'Playfair Display', serif;
-  font-style: italic;
   font-size: 18px;
   color: var(--gold);
   opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.heartNote {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--white);
+  opacity: 0.8;
+  margin-top: 50px;
 }

@@ -2,3 +2,16 @@
 main > section + section {
   /* Sections are self-contained with their own background */
 }
+
+.app-main--fade-in {
+  animation: appMainFadeIn 1.1s ease both;
+}
+
+@keyframes appMainFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

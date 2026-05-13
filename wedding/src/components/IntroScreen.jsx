@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import styles from "../styles/IntroScreen.module.css";
 
-export default function IntroScreen({ onDone }) {
+export default function IntroScreen({ onStart, onDone }) {
   const [ready, setReady] = useState(false);
   const [exiting, setExiting] = useState(false);
 
@@ -17,11 +17,12 @@ export default function IntroScreen({ onDone }) {
   const handleTap = useCallback(() => {
     if (exiting) return;
     setExiting(true);
+    onStart?.();
     setTimeout(() => {
       document.body.style.overflow = "";
       onDone();
-    }, 750);
-  }, [exiting, onDone]);
+    }, 1100);
+  }, [exiting, onStart, onDone]);
 
   return (
     <div

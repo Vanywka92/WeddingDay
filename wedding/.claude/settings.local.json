@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/optimize-assets.mjs)",
+      "Bash(npm run *)"
+    ]
+  }
+}

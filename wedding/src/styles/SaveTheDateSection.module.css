@@ -4,15 +4,6 @@
   position: relative;
 }
 
-.topAccent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent);
-}
-
 .container {
   position: relative;
   z-index: 1;
