@@ -1,5 +1,5 @@
 .section {
-  background: var(--ivory);
+  background: var(--forest);
   padding: 72px 24px;
   position: relative;
   overflow: hidden;
@@ -79,7 +79,7 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(52px, 9vw, 88px);
   font-weight: 300;
-  color: var(--text);
+  color: var(--gold);
   line-height: 1;
   letter-spacing: 2px;
   display: block;

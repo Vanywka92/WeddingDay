@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import HeroSection from "./components/HeroSection";
+import MusicPlayer from "./components/MusicPlayer";
 import InviteSection from "./components/InviteSection";
 import SaveTheDateSection from "./components/SaveTheDateSection";
 import CountdownSection from "./components/CountdownSection";
@@ -21,7 +22,8 @@ export default function App() {
       <ScrollProgress />
       {intro && <IntroScreen onDone={onIntroDone} />}
       <main>
-        <HeroSection />
+        <MusicPlayer />
+        {/* <HeroSection /> */}
         {/* <InviteSection /> */}
         <SaveTheDateSection />
         <LocationSection />

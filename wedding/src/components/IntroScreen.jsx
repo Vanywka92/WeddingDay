@@ -38,16 +38,17 @@ export default function IntroScreen({ onDone }) {
         <div className={styles.tap}>
           <svg
             className={styles.tapIcon}
-            viewBox="0 0 24 24"
+            viewBox="0 0 32 32"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="1.6"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M9 11V6a2 2 0 0 1 4 0v5" />
-            <path d="M13 11V8a2 2 0 0 1 4 0v6a6 6 0 0 1-6 6H9a5 5 0 0 1-5-5v-2a2 2 0 0 1 4 0" />
-            <path d="M9 11a2 2 0 0 1 4 0" />
+            <path d="M11 18V5.5a2.5 2.5 0 0 1 5 0V14" />
+            <path d="M16 11a2 2 0 0 1 4 0v4" />
+            <path d="M20 12a2 2 0 0 1 4 0v4" />
+            <path d="M24 13.5a2 2 0 0 1 4 0V21a8 8 0 0 1-8 8h-3.2a6 6 0 0 1-4.6-2.15L4.6 19.3a2 2 0 0 1 3-2.6L11 20" />
           </svg>
           <span>Для просмотра коснитесь экрана</span>
         </div>

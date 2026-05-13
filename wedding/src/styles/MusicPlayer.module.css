@@ -1,0 +1,305 @@
+.section {
+  position: relative;
+  background-color: var(--ivory);
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  padding: 22px 22px 26px;
+  border-radius: 28px;
+  background-color: var(--forest);
+  color: #fff;
+  box-shadow:
+    0 30px 60px -20px rgba(243, 166, 0, 0.521),
+    0 12px 24px -10px rgba(245, 168, 2, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Glossy diagonal highlight (the shine across the image) */
+.gloss {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.16) 50%,
+      transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Soft bokeh circles in background */
+.bokeh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle 60px at 80% 18%, rgba(255, 255, 255, 0.18), transparent 70%),
+    radial-gradient(circle 40px at 15% 65%, rgba(255, 255, 255, 0.14), transparent 70%),
+    radial-gradient(circle 28px at 92% 78%, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Header (heart + menu) ── */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.iconBtn {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.06);
+}
+
+.iconBtn.liked {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  color: #d44b8a;
+  animation: heartPop 0.4s ease;
+}
+
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* ── Cover ── */
+.coverWrap {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 18px;
+}
+
+.cover {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 32px -10px rgba(70, 10, 40, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05);
+}
+
+.coverDot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
+.cover.coverSpin {
+  animation: coverFloat 4s ease-in-out infinite;
+}
+
+@keyframes coverFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* ── Meta ── */
+.meta {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.4s ease;
+  min-height: 1.4em;
+}
+
+.subtitlePlaying {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ── Progress ── */
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.time {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-variant-numeric: tabular-nums;
+  min-width: 30px;
+  text-align: center;
+}
+
+.progressTrack {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  outline: none;
+}
+
+.progressTrack:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ffffff, #ffd6e8);
+  pointer-events: none;
+  transition: width 0.15s linear;
+}
+
+.progressThumb {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  transition: left 0.15s linear;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.ctrl {
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.ctrl:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.06);
+}
+
+.playBtn {
+  width: 60px;
+  height: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #aca002;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 24px -6px rgba(70, 10, 40, 0.5),
+    inset 0 -3px 6px rgba(212, 75, 138, 0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.playBtn:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow:
+    0 14px 30px -6px rgba(70, 10, 40, 0.55),
+    inset 0 -3px 6px rgba(212, 75, 138, 0.15);
+}
+
+.playBtn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.playBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.playBtnOn {
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.18),
+    0 14px 30px -6px rgba(70, 10, 40, 0.55),
+    inset 0 -3px 6px rgba(212, 75, 138, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover.coverSpin {
+    animation: none;
+  }
+}
