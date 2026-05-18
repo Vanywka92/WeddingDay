@@ -66,7 +66,10 @@ export default function MusicPlayer() {
   const skip = (delta) => {
     const audio = audioRef.current;
     if (!audio) return;
-    const next = Math.max(0, Math.min((audio.duration || 0) - 0.1, audio.currentTime + delta));
+    const next = Math.max(
+      0,
+      Math.min((audio.duration || 0) - 0.1, audio.currentTime + delta),
+    );
     audio.currentTime = next;
   };
 
@@ -75,7 +78,10 @@ export default function MusicPlayer() {
     const bar = progressRef.current;
     if (!audio || !bar || !duration) return;
     const rect = bar.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const ratio = Math.max(
+      0,
+      Math.min(1, (e.clientX - rect.left) / rect.width),
+    );
     audio.currentTime = ratio * duration;
   };
 
@@ -138,7 +144,9 @@ export default function MusicPlayer() {
 
         <div className={styles.meta}>
           <h3 className={styles.title}>{TRACK_TITLE}</h3>
-          <p className={`${styles.subtitle} ${playing ? styles.subtitlePlaying : ""}`}>
+          <p
+            className={`${styles.subtitle} ${playing ? styles.subtitlePlaying : ""}`}
+          >
             {subtitle}
           </p>
         </div>
@@ -176,7 +184,10 @@ export default function MusicPlayer() {
             aria-label="Назад на 10 секунд"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M11 6L4 12L11 18V13L20 18V6L11 11V6Z" fill="currentColor" />
+              <path
+                d="M11 6L4 12L11 18V13L20 18V6L11 11V6Z"
+                fill="currentColor"
+              />
             </svg>
           </button>
 
@@ -189,12 +200,36 @@ export default function MusicPlayer() {
             disabled={error}
           >
             {playing ? (
-              <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor" />
-                <rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor" />
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <rect
+                  x="6"
+                  y="5"
+                  width="4"
+                  height="14"
+                  rx="1.2"
+                  fill="currentColor"
+                />
+                <rect
+                  x="14"
+                  y="5"
+                  width="4"
+                  height="14"
+                  rx="1.2"
+                  fill="currentColor"
+                />
               </svg>
             ) : (
-              <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path d="M8 5.5L19 12L8 18.5V5.5Z" fill="currentColor" />
               </svg>
             )}
@@ -207,12 +242,21 @@ export default function MusicPlayer() {
             aria-label="Вперёд на 10 секунд"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M13 6L20 12L13 18V13L4 18V6L13 11V6Z" fill="currentColor" />
+              <path
+                d="M13 6L20 12L13 18V13L4 18V6L13 11V6Z"
+                fill="currentColor"
+              />
             </svg>
           </button>
         </div>
 
         <audio ref={audioRef} src={TRACK_SRC} loop preload="none" />
+      </div>
+      <div className={styles.footer}>
+        <p className={styles.footerText}>Прокрутите вниз</p>
+        <svg className={styles.footerArrow} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
     </section>
   );
