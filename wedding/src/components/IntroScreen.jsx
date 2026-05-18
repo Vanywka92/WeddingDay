@@ -34,7 +34,7 @@ export default function IntroScreen({ onStart, onDone }) {
 
       <div className={`${styles.content} ${ready ? styles.contentIn : ""}`}>
         <p className={styles.received}>ВЫ ПОЛУЧИЛИ</p>
-        <p className={styles.invite}>Приглашение</p>
+        <p className={styles.invite}>Приглашение на свадьбу</p>
 
         <div className={styles.tap}>
           <svg

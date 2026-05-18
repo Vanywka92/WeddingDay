@@ -79,10 +79,12 @@ export default function RSVPSection() {
         <p className={styles.footerNote}>
           По всем вопросам вы можете обращаться к нам:
         </p>
-        <p className={styles.footerNote}>Иван: +7 (916) 123-45-67</p>
-        <p className={styles.footerNote}>Юлия: +7 (916) 123-45-67</p>
-        <p className={styles.footerNames}>До скорой встречи! С любовью ♡</p>
-        <p className={styles.footerNames}>Иван &amp; Юлия</p>
+        <p className={styles.footerNote}>Иван: +7 (961) 844-02-22</p>
+        <p className={styles.footerNote}>Юлия: +7 (937) 191-79-20</p>
+        <div className={styles.footerNamesContainer}>
+          <p className={styles.footerNames}>До скорой встречи! С любовью ♡</p>
+          <p className={styles.footerNames}>Иван &amp; Юлия</p>
+        </div>
       </footer>
 
       <RSVPModal open={modalOpen} onClose={() => setModalOpen(false)} />

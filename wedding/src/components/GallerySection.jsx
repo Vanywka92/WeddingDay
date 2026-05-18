@@ -8,7 +8,7 @@ import dress from "../img/dress.png";
 const palette = [
   { name: "", hex: "rgb(41 70 45 / 99%)" },
   { name: "", hex: "rgb(121 167 113)" },
-  { name: "", hex: "rgb(154 150 115)" },
+  { name: "", hex: "rgb(126 154 203)" },
   { name: "", hex: "#c8a96e" },
   { name: "", hex: "#ecdfc8" },
   { name: "", hex: "rgb(66 48 23)" },
@@ -23,7 +23,7 @@ export default function GallerySection() {
     <section className={styles.section}>
       <TornEdge position="top" color="var(--forest)" />
       <FloatingPetals />
-      <img src={dress} alt="Dress" className={styles.dress} />
+      {/* <img src={dress} alt="Dress" className={styles.dress} /> */}
       <div
         ref={ref}
         className={`reveal ${isVisible ? "visible" : ""} ${styles.header}`}
@@ -38,9 +38,17 @@ export default function GallerySection() {
 
       <ul className={styles.palette}>
         {palette.map((color, i) => (
-          <PaletteSwatch key={color.name} color={color} delay={(i % 6) + 1} />
+          <PaletteSwatch key={color.hex} color={color} delay={(i % 6) + 1} />
         ))}
       </ul>
+
+      <div className={styles.headerWish}>
+        <h2 className={styles.eyebrow}>Пожелание</h2>
+        <p className={styles.heading}>
+          После свадьбы мы уезжаем, поэтому просим не дарить нам цветы, ведь мы
+          просто не успеем насладиться их красотой до отъезда!
+        </p>
+      </div>
     </section>
   );
 }

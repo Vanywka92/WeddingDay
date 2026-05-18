@@ -92,8 +92,8 @@
 
 @media (hover: hover) {
   .submitBtn:hover {
-    background-color: var(--gold-dark) !important;
-    border-color: var(--gold-dark) !important;
+    background-color: var(--forest) !important;
+    border-color: var(--forest) !important;
   }
 }
 
@@ -173,7 +173,41 @@
   font-size: 19px;
   font-style: italic;
   color: var(--gold);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+}
+
+.successButtonContainer {
+  margin-bottom: 28px;
+}
+
+.successButtonContainer .successText {
+  margin-bottom: 16px;
+}
+
+.successButton {
+  display: inline-block;
+  padding: 0 32px;
+  height: 48px;
+  line-height: 48px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff !important;
+  background-color: var(--gold);
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(200, 169, 110, 0.3);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .successButton:hover {
+    background-color: var(--forest);
+    color: #fff !important;
+  }
 }
 
 .closeBtn {

@@ -147,7 +147,12 @@ function FormView({ form, loading, onSubmit, onCancel }) {
           >
             <Input
               addonBefore={
-                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 15 }}>
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: 15,
+                  }}
+                >
                   +7
                 </span>
               }
@@ -204,7 +209,24 @@ function SuccessView({ onClose }) {
           Спасибо за подтверждение. Мы очень рады, что вы будете с нами в этот
           особенный день.
         </p>
-        <p className={styles.successDate}>15 августа 2026 · 17:00</p>
+        <p className={styles.successDate}>· 15 августа 2026 ·</p>
+
+        <div className={styles.successButtonContainer}>
+          <p className={styles.successText}>
+            Мы создали телеграмм-канал нашего праздника, где можно будет узнать
+            дополнительную информацию, поделиться фотографиями и видео в день и
+            после свадьбы.
+          </p>
+          <a
+            href="https://t.me/+yY5HTcAI63BmNTZi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.successButton}
+          >
+            Перейти в канал
+          </a>
+        </div>
+
         <Button onClick={onClose} size="large" className={styles.closeBtn}>
           Закрыть
         </Button>
