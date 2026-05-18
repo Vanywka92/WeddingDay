@@ -140,7 +140,7 @@
 }
 
 .weddingDay::before {
-  content: '♥';
+  content: '♥\FE0E';
   position: absolute;
   inset: 0;
   display: flex;
