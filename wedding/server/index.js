@@ -39,7 +39,7 @@ async function sendTelegramNotification(full_name, phone, totalCount) {
 }
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const db = new Database(path.join(__dirname, 'guests.db'));
 
@@ -79,6 +79,17 @@ app.post('/api/rsvp', (req, res) => {
 app.get('/api/guests', (req, res) => {
   const guests = db.prepare('SELECT * FROM guests ORDER BY created_at DESC').all();
   res.json({ total: guests.length, guests });
+});
+
+// --- Раздача собранного фронтенда (продакшен) ---
+const distPath = path.join(__dirname, '..', 'dist');
+app.use(express.static(distPath));
+
+// SPA-фолбэк: любой не-API GET-запрос отдаёт index.html,
+// чтобы клиентский роутинг React работал при прямом заходе по ссылке.
+app.use((req, res, next) => {
+  if (req.method !== 'GET' || req.path.startsWith('/api/')) return next();
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 app.listen(PORT, () => {

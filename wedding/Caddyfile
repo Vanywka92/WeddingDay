@@ -1,0 +1,6 @@
+# Конфигурация Caddy: HTTPS-сертификат выпускается автоматически.
+# ЗАМЕНИ your-domain.ru на свой домен и положи файл в /etc/caddy/Caddyfile.
+
+your-domain.ru {
+    reverse_proxy localhost:3001
+}
