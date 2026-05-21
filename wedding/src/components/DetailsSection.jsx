@@ -4,24 +4,24 @@ import TornEdge from "./TornEdge";
 import styles from "../styles/DetailsSection.module.css";
 import bokal from "../img/bokal.png";
 import guest from "../img/guest.png";
-import ceremoniya from "../img/ceremoniya.png";
+import cake from "../img/cake.png";
 import fireworks from "../img/fireworks.png";
 
 const cards = [
   {
     icon: <img src={guest} alt="guest" className={styles.cardIcon} />,
-    label: "15:30",
+    label: "16:30",
     title: "Сбор гостей",
-  },
-  {
-    icon: <img src={ceremoniya} alt="ceremoniya" className={styles.cardIcon} />,
-    label: "16:00",
-    title: "Выездная церемония",
   },
   {
     icon: <img src={bokal} alt="bokal" className={styles.cardIcon} />,
     label: "17:00",
     title: "Праздничный банкет",
+  },
+  {
+    icon: <img src={cake} alt="cake" className={styles.cardIcon} />,
+    label: "21:00",
+    title: "Подача свадебного торта",
   },
   {
     icon: <img src={fireworks} alt="fireworks" className={styles.cardIcon} />,

@@ -68,7 +68,7 @@ export default function LocationSection() {
           <h2
             className={`reveal-right reveal-delay-1 ${v2 ? "visible" : ""} ${styles.venueName}`}
           >
-            Ресторан «Эко Парк»
+            Банкетный зал «Эко Парк»
           </h2>
 
           <div
@@ -79,7 +79,7 @@ export default function LocationSection() {
               <EnvironmentOutlined className={styles.detailIcon} />
               <div>
                 <p className={styles.detailTitle}>Адрес</p>
-                <p className={styles.detailValue}>Сити Чесс, Элиста</p>
+                <p className={styles.detailValue}>Сити-Чесс, г. Элиста</p>
               </div>
             </div>
 
@@ -90,14 +90,6 @@ export default function LocationSection() {
                 <p className={styles.detailValue}>
                   Бесплатная парковка на территории
                 </p>
-              </div>
-            </div>
-
-            <div className={styles.detailRow}>
-              <PhoneOutlined className={styles.detailIcon} />
-              <div>
-                <p className={styles.detailTitle}>Координатор</p>
-                <p className={styles.detailValue}>+7 (961) 844-02-22</p>
               </div>
             </div>
           </div>

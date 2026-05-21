@@ -102,7 +102,7 @@ function FormView({ form, loading, onSubmit, onCancel }) {
         <p className={styles.modalEyebrow}>Подтверждение</p>
         <h3 className={styles.modalTitle}>Я приду на свадьбу</h3>
         <p className={styles.modalSubtitle}>
-          Оставьте ваши данные, чтобы мы могли вас ждать
+          Оставьте ваши данные, чтобы мы учесть Вас в список приглашенных
         </p>
       </div>
 
@@ -213,7 +213,7 @@ function SuccessView({ onClose }) {
 
         <div className={styles.successButtonContainer}>
           <p className={styles.successText}>
-            Мы создали телеграмм-канал нашего праздника, где можно будет узнать
+            Мы создали телеграм-канал нашего праздника, где можно будет узнать
             дополнительную информацию, поделиться фотографиями и видео в день и
             после свадьбы.
           </p>
