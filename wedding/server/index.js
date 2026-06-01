@@ -55,6 +55,37 @@ db.exec(`
 app.use(cors());
 app.use(express.json());
 
+// --- Защита админки паролем (HTTP Basic Auth) ---
+// Логин — любой (например admin), пароль берётся из переменной ADMIN_PASSWORD в .env
+function adminAuth(req, res, next) {
+  const password = process.env.ADMIN_PASSWORD;
+
+  // Если пароль не задан в .env — админка закрыта полностью, чтобы данные не утекли.
+  if (!password) {
+    return res.status(503).send('Админка не настроена: задайте ADMIN_PASSWORD в .env');
+  }
+
+  const header = req.headers.authorization || '';
+  const [scheme, encoded] = header.split(' ');
+
+  if (scheme === 'Basic' && encoded) {
+    const decoded = Buffer.from(encoded, 'base64').toString('utf8');
+    const pass = decoded.slice(decoded.indexOf(':') + 1);
+    if (pass === password) return next();
+  }
+
+  res.set('WWW-Authenticate', 'Basic realm="Wedding Admin", charset="UTF-8"');
+  return res.status(401).send('Требуется авторизация');
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 app.post('/api/rsvp', (req, res) => {
   const { full_name, phone } = req.body;
 
@@ -76,9 +107,66 @@ app.post('/api/rsvp', (req, res) => {
   res.json({ success: true, id: result.lastInsertRowid });
 });
 
-app.get('/api/guests', (req, res) => {
+app.get('/api/guests', adminAuth, (req, res) => {
   const guests = db.prepare('SELECT * FROM guests ORDER BY created_at DESC').all();
   res.json({ total: guests.length, guests });
+});
+
+// --- Страница-админка: список гостей в браузере (под паролем) ---
+app.get('/admin', adminAuth, (req, res) => {
+  const guests = db.prepare('SELECT * FROM guests ORDER BY created_at DESC').all();
+
+  const rows = guests
+    .map(
+      (g, i) => `
+        <tr>
+          <td class="num">${guests.length - i}</td>
+          <td>${escapeHtml(g.full_name)}</td>
+          <td><a href="tel:${escapeHtml(g.phone)}">${escapeHtml(g.phone)}</a></td>
+          <td class="date">${escapeHtml(g.created_at)}</td>
+        </tr>`
+    )
+    .join('');
+
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.send(`<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Гости — админка</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+           margin: 0; padding: 16px; background: #f5f5f7; color: #1c1c1e; }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    .count { color: #6b6b70; font-size: 14px; margin-bottom: 16px; }
+    .wrap { background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #ececef; }
+    th { background: #fafafa; font-weight: 600; color: #6b6b70;
+         font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
+    tr:last-child td { border-bottom: none; }
+    .num { color: #9b9ba0; width: 36px; }
+    .date { color: #9b9ba0; white-space: nowrap; }
+    a { color: #0a6cff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Список гостей</h1>
+  <div class="count">Всего записалось: ${guests.length} чел.</div>
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>ФИО</th><th>Телефон</th><th>Когда</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>
+</body>
+</html>`);
 });
 
 // --- Раздача собранного фронтенда (продакшен) ---

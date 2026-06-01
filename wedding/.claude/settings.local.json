@@ -2,7 +2,23 @@
   "permissions": {
     "allow": [
       "Bash(node scripts/optimize-assets.mjs)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(pkill -f \"node server/index.js\")",
+      "WebSearch",
+      "WebFetch(domain:timeweb.cloud)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(nslookup -type=ns ivanyulia.com 8.8.8.8)",
+      "Bash(nslookup ivanyulia.com 8.8.8.8)",
+      "Bash(curl -sI --max-time 20 https://ivanyulia.com)",
+      "Bash(curl -sI --max-time 20 http://ivanyulia.com)",
+      "Bash(curl -s --max-time 20 https://ivanyulia.com)",
+      "Bash(curl -sI --max-time 20 https://ivanyulia.com --resolve ivanyulia.com:443:188.225.79.241)",
+      "Bash(curl -s --max-time 20 \"https://ivanyulia.com/api/guests\" --resolve ivanyulia.com:443:188.225.79.241)",
+      "Bash(git rm *)",
+      "Bash(node -e \"import\\('better-sqlite3'\\).then\\(\\({default:D}\\)=>{const db=new D\\('server/guests.db'\\);const rows=db.prepare\\('SELECT * FROM guests ORDER BY created_at DESC'\\).all\\(\\);console.log\\('Всего записей:',rows.length\\);console.table\\(rows\\);}\\)\")",
+      "Bash(node --check server/index.js)"
     ]
   }
 }
