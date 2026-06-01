@@ -1,12 +1,20 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@supabase/supabase-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// --- Подключение к Supabase ---
+// Данные гостей хранятся в облаке Supabase и переживают любые редеплои.
+// SUPABASE_URL и SUPABASE_SERVICE_KEY задаются в переменных окружения (панель Timeweb / .env).
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_KEY
+);
 
 async function sendTelegramNotification(full_name, phone, totalCount) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -40,17 +48,6 @@ async function sendTelegramNotification(full_name, phone, totalCount) {
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-const db = new Database(path.join(__dirname, 'guests.db'));
-
-db.exec(`
-  CREATE TABLE IF NOT EXISTS guests (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    full_name TEXT NOT NULL,
-    phone TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  )
-`);
 
 app.use(cors());
 app.use(express.json());
@@ -86,35 +83,71 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-app.post('/api/rsvp', (req, res) => {
+app.post('/api/rsvp', async (req, res) => {
   const { full_name, phone } = req.body;
 
   if (!full_name || !phone) {
     return res.status(400).json({ error: 'ФИО и телефон обязательны' });
   }
 
-  const existing = db.prepare('SELECT id FROM guests WHERE phone = ?').get(phone);
+  const cleanName = full_name.trim();
+  const cleanPhone = phone.trim();
+
+  const { data: existing } = await supabase
+    .from('guests')
+    .select('id')
+    .eq('phone', cleanPhone)
+    .maybeSingle();
+
   if (existing) {
     return res.status(409).json({ error: 'Гость с таким номером уже зарегистрирован' });
   }
 
-  const stmt = db.prepare('INSERT INTO guests (full_name, phone) VALUES (?, ?)');
-  const result = stmt.run(full_name.trim(), phone.trim());
+  const { data, error } = await supabase
+    .from('guests')
+    .insert([{ full_name: cleanName, phone: cleanPhone }])
+    .select('id')
+    .single();
 
-  const { total } = db.prepare('SELECT COUNT(*) as total FROM guests').get();
-  sendTelegramNotification(full_name.trim(), phone.trim(), total);
+  if (error) {
+    console.error('Supabase insert failed:', error.message);
+    return res.status(500).json({ error: 'Ошибка при сохранении данных' });
+  }
 
-  res.json({ success: true, id: result.lastInsertRowid });
+  const { count } = await supabase
+    .from('guests')
+    .select('*', { count: 'exact', head: true });
+
+  sendTelegramNotification(cleanName, cleanPhone, count);
+
+  res.json({ success: true, id: data.id });
 });
 
-app.get('/api/guests', adminAuth, (req, res) => {
-  const guests = db.prepare('SELECT * FROM guests ORDER BY created_at DESC').all();
+app.get('/api/guests', adminAuth, async (req, res) => {
+  const { data: guests, error } = await supabase
+    .from('guests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Supabase select failed:', error.message);
+    return res.status(500).json({ error: 'Ошибка при получении данных' });
+  }
+
   res.json({ total: guests.length, guests });
 });
 
 // --- Страница-админка: список гостей в браузере (под паролем) ---
-app.get('/admin', adminAuth, (req, res) => {
-  const guests = db.prepare('SELECT * FROM guests ORDER BY created_at DESC').all();
+app.get('/admin', adminAuth, async (req, res) => {
+  const { data: guests, error } = await supabase
+    .from('guests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Supabase select failed:', error.message);
+    return res.status(500).send('Ошибка при получении данных');
+  }
 
   const rows = guests
     .map(
