@@ -213,6 +213,8 @@ app.use((req, res, next) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Слушаем 0.0.0.0 (все интерфейсы), а не localhost — иначе health-check
+// хостинга (Timeweb App Platform) не достучится до приложения снаружи.
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
