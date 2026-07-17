@@ -102,7 +102,7 @@ function FormView({ form, loading, onSubmit, onCancel }) {
         <p className={styles.modalEyebrow}>Подтверждение</p>
         <h3 className={styles.modalTitle}>Я приду на свадьбу</h3>
         <p className={styles.modalSubtitle}>
-          Оставьте ваши данные, чтобы мы учесть Вас в список приглашенных
+          Оставьте ваши данные, чтобы мы могли учесть Вас в список приглашенных
         </p>
       </div>
 
