@@ -84,7 +84,7 @@ export default function HeroSection() {
 
         <div className={styles.dateLine}>
           <span className={styles.dateDecor}>—</span>
-          <span className={styles.date}>15 августа 2026</span>
+          <span className={styles.date}>5 сентября 2026</span>
           <span className={styles.dateDecor}>—</span>
         </div>
       </div>

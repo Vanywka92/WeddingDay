@@ -3,7 +3,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import TornEdge from './TornEdge';
 import styles from '../styles/CountdownSection.module.css';
 
-const WEDDING = new Date('2026-08-15T17:00:00+03:00');
+const WEDDING = new Date('2026-09-05T17:00:00+03:00');
 
 function pad(n) {
   return String(n).padStart(2, '0');

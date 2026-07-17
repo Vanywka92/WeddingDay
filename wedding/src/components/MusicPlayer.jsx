@@ -4,7 +4,7 @@ import cover from "../img/1.webp";
 import Garland from "./Garland";
 
 const TRACK_SRC = "/music.mp3";
-const TRACK_TITLE = "Иван & Юлия · 15.08.2026";
+const TRACK_TITLE = "Иван & Юлия · 05.09.2026";
 const TRACK_ARTIST_IDLE = "Нажмите, чтобы включить музыку";
 const TRACK_ARTIST_PLAYING = "Мот - Намек на нас";
 

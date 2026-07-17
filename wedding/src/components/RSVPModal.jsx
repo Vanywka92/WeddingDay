@@ -209,7 +209,7 @@ function SuccessView({ onClose }) {
           Спасибо за подтверждение. Мы очень рады, что вы будете с нами в этот
           особенный день.
         </p>
-        <p className={styles.successDate}>· 15 августа 2026 ·</p>
+        <p className={styles.successDate}>· 5 сентября 2026 ·</p>
 
         <div className={styles.successButtonContainer}>
           <p className={styles.successText}>

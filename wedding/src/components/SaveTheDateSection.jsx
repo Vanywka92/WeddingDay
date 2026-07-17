@@ -3,11 +3,11 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 import FloatingPetals from "./FloatingPetals";
 import styles from "../styles/SaveTheDateSection.module.css";
 
-const WEDDING_DAY = 15;
-const WEDDING_MONTH = 8; // August
+const WEDDING_DAY = 5;
+const WEDDING_MONTH = 9; // september
 const WEDDING_YEAR = 2026;
 
-const MONTH_NAME = "Август";
+const MONTH_NAME = "Сентябрь";
 const WEEKDAYS = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 
 function buildCalendar(year, month) {

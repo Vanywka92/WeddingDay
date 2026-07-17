@@ -53,7 +53,7 @@ export default function RSVPSection() {
             </h2>
             <p className={styles.subtext}>
               Пожалуйста, подтвердите своё участие до{" "}
-              <strong>15 июля 2026</strong>
+              <strong>15 августа 2026</strong>
             </p>
           </div>
 
