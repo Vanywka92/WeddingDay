@@ -20,7 +20,7 @@ const cards = [
   },
   {
     icon: <img src={cake} alt="cake" className={styles.cardIcon} />,
-    label: "21:00",
+    label: "22:00",
     title: "Подача свадебного торта",
   },
   {
