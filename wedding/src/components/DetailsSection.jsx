@@ -8,15 +8,15 @@ import cake from "../img/cake.png";
 import fireworks from "../img/fireworks.png";
 
 const cards = [
-  {
-    icon: <img src={guest} alt="guest" className={styles.cardIcon} />,
-    label: "16:30",
-    title: "Сбор гостей",
-  },
+  // {
+  //   icon: <img src={guest} alt="guest" className={styles.cardIcon} />,
+  //   label: "16:30",
+  //   title: "Сбор гостей",
+  // },
   {
     icon: <img src={bokal} alt="bokal" className={styles.cardIcon} />,
     label: "17:00",
-    title: "Праздничный банкет",
+    title: "Начало праздничного банкета",
   },
   {
     icon: <img src={cake} alt="cake" className={styles.cardIcon} />,
